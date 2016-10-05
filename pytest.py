@@ -16,7 +16,8 @@ def main_function(directory):
             print("Directory " + directory + " doesn't exist!")
     return
 
-def search_and_print_node(node,  prefix=''):
+
+def search_and_print_node(node, prefix=''):
     items = os.listdir(node)
     if len(items) == 0:
         return
@@ -37,7 +38,6 @@ def search_and_print_node(node,  prefix=''):
 
 if __name__ == '__main__':
     # just for demo
-    #subprocess.run(['tree'] + sys.argv[1:])
     if len(sys.argv) > 1:
         directories = sys.argv[1:]
     else:
