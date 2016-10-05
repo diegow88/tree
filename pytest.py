@@ -16,21 +16,23 @@ def main_function(directory):
             print("Directory " + directory + " doesn't exist!")
     return
 
-def search_and_print_node(node, prefix = ''):
+def search_and_print_node(node, prefix=''):
     items = os.listdir(node)
     if len(items) == 0:
         return
 
     items.sort()
     key = 0
-    while key<len(items)-1:
-        print(prefix + "├──" + items[key])
+    currentPrefix = "├──"
+    nextPrefix = "│  "
+    while key < len(items):
+        if key == len(items)-1:
+            currentPrefix = "└──"
+            nextPrefix = "   "
+        print(prefix + currentPrefix + items[key])
         if os.path.isdir(os.path.join(node, items[key])):
-            search_and_print_node(os.path.join(node, items[key]), "│  ")
+            search_and_print_node(os.path.join(node, items[key]), nextPrefix)
         key+=1
-    print(prefix + "└──" + items[key])
-    if os.path.isdir(os.path.join(node, items[key])):
-        search_and_print_node(os.path.join(node, items[key]), "   ")    
     return
 
 if __name__ == '__main__':
